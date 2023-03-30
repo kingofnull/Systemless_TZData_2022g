@@ -36,18 +36,17 @@ backupAndReplace(){
 	local DES_DIR=$2
 	local BACKUP_DIR=$DES_DIR/backup_$RANDOM
     
-    ui_print "Make a backuped replacment from `$REPLACEMENT_DIR` to `$DES_DIR` ..." 
+    ui_print "Make a backuped replacment from $REPLACEMENT_DIR to $DES_DIR ..." 
     
     if [ ! -d $DES_DIR ]; then
         ui_print "Directory $DES_DIR DOES NOT exists. Opration canceled !" 
         return 1
     fi
     
-    ui_print "Making backup ..."
+    ui_print "Making backup directory $BACKUP_DIR ..."
     mkdir $BACKUP_DIR
     ui_print "Copying replacment files ..."
-    cp -afr $DES_DIR/* $BACKUP_DIR/
-	cp -afr $REPLACEMENT_DIR/* $DES_DIR/
+    cp -afr $DES_DIR/* $BACKUP_DIR/ && cp -afr $REPLACEMENT_DIR/* $DES_DIR/
 }
 
 REF_API=$API
@@ -66,9 +65,9 @@ REF_DIR=$SOURCES_DIR/$REF_API
 
 ui_print "Trying to backup and install SDK$API ..."
 
-backupAndReplace $REF_DIR $MODPATH/system/usr/share/zoneinfo/
-backupAndReplace $REF_DIR $MODPATH/data/misc/zoneinfo/
-backupAndReplace $REF_DIR $MODPATH/data/misc/zoneinfo/tzdata/
-backupAndReplace $REF_DIR $MODPATH/system/apex/com.android.tzdata/etc/tz/
+backupAndReplace $REF_DIR /system/usr/share/zoneinfo/
+backupAndReplace $REF_DIR /data/misc/zoneinfo/
+backupAndReplace $REF_DIR /data/misc/zoneinfo/tzdata/
+backupAndReplace $REF_DIR /system/apex/com.android.tzdata/etc/tz/
 
 # rm -rf $SOURCES_DIR/
