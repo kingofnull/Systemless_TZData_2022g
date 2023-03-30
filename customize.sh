@@ -65,9 +65,9 @@ REF_DIR=$SOURCES_DIR/$REF_API
 
 ui_print "Trying to backup and install SDK$API ..."
 
-backupAndReplace $REF_DIR /system/usr/share/zoneinfo/
-backupAndReplace $REF_DIR /data/misc/zoneinfo/
-backupAndReplace $REF_DIR /data/misc/zoneinfo/tzdata/
-backupAndReplace $REF_DIR /system/apex/com.android.tzdata/etc/tz/
+backupAndReplace $REF_DIR /system/usr/share/zoneinfo
+backupAndReplace $REF_DIR /data/misc/zoneinfo
+backupAndReplace $REF_DIR /data/misc/zoneinfo/tzdata
+backupAndReplace $REF_DIR /system/apex/com.android.tzdata/etc/tz
 
 # rm -rf $SOURCES_DIR/
